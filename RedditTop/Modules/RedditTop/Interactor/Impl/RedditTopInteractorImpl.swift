@@ -36,9 +36,9 @@ final class RedditTopInteractorImpl: RedditTopInteractor {
             switch result {
             case let .success(page):
                 self.handleNewPage(page: page)
-                handler(self.posts)
-            case .failure:
-                break
+                handler(.success(self.posts))
+            case let .failure(error):
+                handler(.failure(error))
             }
             
             self.currentFetchTask = nil

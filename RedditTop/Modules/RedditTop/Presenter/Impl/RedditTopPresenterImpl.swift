@@ -51,8 +51,13 @@ final class RedditTopPresenterImpl: RedditTopViewOutput {
     // MARK: - Private
     
     private func fetchAndUpdateData(shoudlReload reload: Bool = false) {
-        let updateDataHandler: ([RedditPostDTO]) -> Void = { [weak self] posts in
-            self?.cellItems = RedditViewCellItem.createItems(with: posts)
+        let updateDataHandler: (Result<[RedditPostDTO], Error>) -> Void = { [weak self] result in
+            switch result {
+            case let .success(posts):
+                self?.cellItems = RedditViewCellItem.createItems(with: posts)
+            case let .failure(error):
+                self?.router.handleError(error: error) { self?.fetchAndUpdateData(shoudlReload: reload) }
+            }
         }
         
         if reload {

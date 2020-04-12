@@ -9,7 +9,7 @@
 import Foundation
 
 protocol RedditTopInteractor {
-    typealias PostsHandler = ([RedditPostDTO]) -> Void
+    typealias PostsHandler = (Result<[RedditPostDTO], Error>) -> Void
     
     func fetchTopReddits(postsHandler handler: @escaping PostsHandler)
     func reloadTopReddits(postsHandler handler: @escaping PostsHandler)
