@@ -11,10 +11,15 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    let api: RedditAPIService = RedditAPIServiceImpl(executor: RequestsExecutorImpl())
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        api.topReddits { (result) in
+            print(result)
+        }
+        
         return true
     }
 
