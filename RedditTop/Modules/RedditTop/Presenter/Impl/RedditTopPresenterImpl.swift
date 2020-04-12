@@ -15,9 +15,21 @@ final class RedditTopPresenterImpl: RedditTopViewOutput {
     var interactor: RedditTopInteractor!
     var router: RedditTopRouter!
     
+    private var viewDataModels: [RedditPostViewData] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.view.modelsUpdated(models: self.viewDataModels)
+            }
+        }
+    }
+    
     required init(view: RedditTopViewInput) {
         self.view = view
     }
     
-    func configureView() {}
+    func viewIsReady() {
+        interactor.fetchTopReddits { [weak self] posts in
+            self?.viewDataModels = posts.map(RedditPostViewData.init)
+        }
+    }
 }

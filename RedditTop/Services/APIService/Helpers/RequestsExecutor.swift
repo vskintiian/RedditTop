@@ -24,10 +24,10 @@ typealias DataHandllerType = Result<Response<Data>, Error>
 
 protocol RequestsExecutor {
     @discardableResult
-    func execute<T: Decodable>(url: URL, handler: @escaping (HandllerType<T>) -> ()) -> URLSessionDataTask
+    func execute<T: Decodable>(url: URL, handler: @escaping (HandllerType<T>) -> ()) -> Cancellable
     
     @discardableResult
-    func executeData(url: URL, handler: @escaping (DataHandllerType) -> ()) -> URLSessionDataTask
+    func executeData(url: URL, handler: @escaping (DataHandllerType) -> ()) -> Cancellable
 }
 
 final class RequestsExecutorImpl: RequestsExecutor {
@@ -38,7 +38,7 @@ final class RequestsExecutorImpl: RequestsExecutor {
     }
     
     @discardableResult
-    func execute<T: Decodable>(url: URL, handler: @escaping (HandllerType<T>) -> ()) -> URLSessionDataTask {
+    func execute<T: Decodable>(url: URL, handler: @escaping (HandllerType<T>) -> ()) -> Cancellable {
         return executeData(url: url) { result in
             switch result {
             case let .success(response):
@@ -52,7 +52,7 @@ final class RequestsExecutorImpl: RequestsExecutor {
     }
     
     @discardableResult
-    func executeData(url: URL, handler: @escaping (DataHandllerType) -> ()) -> URLSessionDataTask {
+    func executeData(url: URL, handler: @escaping (DataHandllerType) -> ()) -> Cancellable {
         let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
             guard error == nil else {
                 return handler(.failure(APIError.general(descriprion: String(describing: error))))

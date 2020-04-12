@@ -15,7 +15,7 @@ final class RedditAPIServiceImpl: RedditAPIService {
         self.executor = executor
     }
     
-    func topReddits(after: String?, handler: @escaping RedditPageRequestHandler) -> URLSessionDataTask {
+    func topReddits(after: String?, handler: @escaping RedditPageRequestHandler) -> Cancellable {
         let endpoint = RedditEndpoint.top(after: after)
         
         let handler: (HandllerType<RedditListingPageDTO>) -> () = { result in

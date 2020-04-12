@@ -39,7 +39,8 @@ extension RedditEndpoint: URLProvidable {
 extension RedditEndpoint {
     static func top(after: String?, limit: Int = 10) -> Self {
         var queryItems = [
-            URLQueryItem(name: "limit", value: String(limit))
+            URLQueryItem(name: "limit", value: String(limit)),
+            URLQueryItem(name: "raw_json", value: String(1))
         ]
         
         if let after = after { queryItems.append(URLQueryItem(name: "after", value: String(after))) }

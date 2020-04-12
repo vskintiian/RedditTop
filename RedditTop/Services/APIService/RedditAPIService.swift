@@ -11,11 +11,11 @@ import Foundation
 protocol RedditAPIService {
     typealias RedditPageRequestHandler = (Result<RedditListingPageDTO, Error>) -> ()
     
-    func topReddits(after: String?, handler: @escaping RedditPageRequestHandler) -> URLSessionDataTask
+    func topReddits(after: String?, handler: @escaping RedditPageRequestHandler) -> Cancellable
 }
 
 extension RedditAPIService {
-    func topReddits(handler: @escaping RedditPageRequestHandler) -> URLSessionDataTask {
+    func topReddits(handler: @escaping RedditPageRequestHandler) -> Cancellable {
         return topReddits(after: nil, handler: handler)
     }
 }

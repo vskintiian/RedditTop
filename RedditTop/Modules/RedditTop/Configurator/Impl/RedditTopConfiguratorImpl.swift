@@ -11,7 +11,9 @@ import Foundation
 final class RedditTopConfiguratorImpl: RedditTopConfigurator {
     
     func configure(with viewController: RedditTopViewController) {
-        let interactor = RedditTopInteractorImpl()
+        let apiService = RedditAPIServiceImpl(executor: RequestsExecutorImpl())
+        
+        let interactor = RedditTopInteractorImpl(redditApiService: apiService)
         let presenter = RedditTopPresenterImpl(view: viewController)
         let router = RedditTopRouterImpl(viewController: viewController)
         

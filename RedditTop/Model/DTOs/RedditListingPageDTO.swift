@@ -22,3 +22,9 @@ extension RedditListingPageDTO {
         let before: String?
     }
 }
+
+// MARK: - Aliases
+extension RedditListingPageDTO {
+    var posts: [RedditPostDTO] { data.children.map(\.data) }
+    var lastPageId: String { data.after }
+}

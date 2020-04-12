@@ -1,5 +1,5 @@
 //
-//  RedditTopViewOutput.swift
+//  URLSessionDataTask+Cancellable.swift
 //  RedditTop
 //
 //  Created by Vladyslav Skintiyan on 12.04.2020.
@@ -8,6 +8,8 @@
 
 import Foundation
 
-protocol RedditTopViewOutput {
-    func viewIsReady()
+protocol Cancellable {
+    func cancel()
 }
+
+extension URLSessionDataTask: Cancellable {}

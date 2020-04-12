@@ -9,5 +9,5 @@
 import UIKit
 
 protocol RedditTopViewInput: UIViewController {
-    
+    func modelsUpdated(models: [RedditPostViewData])
 }
