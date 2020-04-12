@@ -9,7 +9,19 @@
 import UIKit
 
 final class RedditTopViewController: UIViewController, RedditTopViewInput {
-    private let configurator: RedditTopConfigurator = RedditTopConfiguratorImpl()
-    
     var output: RedditTopViewOutput!
+    
+    init(configurator: RedditTopConfigurator) {
+        super.init(nibName: nil, bundle: nil)
+        
+        configurator.configure(with: self)
+    }
+    
+    required init?(coder: NSCoder) {
+        preconditionFailure("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }
