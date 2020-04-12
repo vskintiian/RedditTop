@@ -10,7 +10,9 @@ import Foundation
 
 protocol RedditTopInteractor {
     typealias PostsHandler = (Result<[RedditPostDTO], Error>) -> Void
+    typealias PostsLocalHandler = ([RedditPostDTO]) -> Void
     
+    func fetchFromLocalStorage(postsHandler handler: @escaping PostsLocalHandler)
     func fetchTopReddits(postsHandler handler: @escaping PostsHandler)
     func reloadTopReddits(postsHandler handler: @escaping PostsHandler)
     func previewImageUrl(at index: Int) -> URL?

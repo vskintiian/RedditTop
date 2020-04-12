@@ -13,7 +13,9 @@ final class RedditTopConfiguratorImpl: RedditTopConfigurator {
     func configure(with viewController: RedditTopViewController) {
         let services = ServicesAssemblyInstance.shared
         
-        let interactor = RedditTopInteractorImpl(redditApiService: services.redditApiService)
+        let interactor = RedditTopInteractorImpl(redditApiService: services.redditApiService,
+                                                 localStorage: services.postsLocalStorage)
+        
         let presenter = RedditTopPresenterImpl(view: viewController)
         let router = RedditTopRouterImpl(viewController: viewController)
         

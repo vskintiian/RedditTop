@@ -58,7 +58,7 @@ final class RequestsExecutorImpl: RequestsExecutor {
                 return handler(.failure(APIError.general(descriprion: String(describing: error))))
             }
             
-            guard let response = (response as? HTTPURLResponse), response.statusCode == 200 else {
+            guard let response = (response as? HTTPURLResponse), 200...299 ~= response.statusCode else {
                 return handler(.failure(APIError.invalidStatusCode))
             }
             

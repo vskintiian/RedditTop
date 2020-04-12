@@ -11,6 +11,7 @@ import Foundation
 protocol ServicesAssembly {
     var redditApiService: RedditAPIService { get }
     var imageFetchService: ImageFetchService { get }
+    var postsLocalStorage: RedditPostsLocalStorage { get }
 }
 
 struct ServicesAssemblyInstance {
@@ -30,4 +31,7 @@ private final class ServicesAssemblyImpl: ServicesAssembly {
     
     lazy var imageFetchService: ImageFetchService =
         { return ImageFetchServiceImpl(executor: self.requestExecutor) }()
+    
+    lazy var postsLocalStorage: RedditPostsLocalStorage =
+        { return RedditPostsLocalStorageImpl() }()
 }

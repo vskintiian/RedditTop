@@ -31,8 +31,17 @@ final class RedditTopPresenterImpl: RedditTopViewOutput {
     
     func viewIsReady() {
         view.setTitle(title: "🔝 Reddit")
-        cellItems = [.loadNextPage]
-        fetchAndUpdateData()
+        
+        interactor.fetchFromLocalStorage { [ weak self] posts in
+            guard let self = self else { return }
+            
+            if posts.isEmpty {
+                self.cellItems = [.loadNextPage]
+                self.fetchAndUpdateData()
+            } else {
+                self.cellItems = RedditViewCellItem.createItems(with: posts)
+            }
+        }
     }
     
     func refreshPosts() {

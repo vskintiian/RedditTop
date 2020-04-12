@@ -42,6 +42,8 @@
 		EEFBDD5B244366D50074CF48 /* ImageFetchServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFBDD5A244366D50074CF48 /* ImageFetchServiceImpl.swift */; };
 		EEFBDD5E244369660074CF48 /* ServicesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFBDD5D244369660074CF48 /* ServicesAssembly.swift */; };
 		EEFBDD6124436D290074CF48 /* RedditViewCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFBDD6024436D290074CF48 /* RedditViewCellItem.swift */; };
+		EEFBDD6424437EE80074CF48 /* RedditPostsLocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFBDD6324437EE80074CF48 /* RedditPostsLocalStorage.swift */; };
+		EEFBDD6624437EF50074CF48 /* RedditPostsLocalStorageImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFBDD6524437EF50074CF48 /* RedditPostsLocalStorageImpl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,8 @@
 		EEFBDD5A244366D50074CF48 /* ImageFetchServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetchServiceImpl.swift; sourceTree = "<group>"; };
 		EEFBDD5D244369660074CF48 /* ServicesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesAssembly.swift; sourceTree = "<group>"; };
 		EEFBDD6024436D290074CF48 /* RedditViewCellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditViewCellItem.swift; sourceTree = "<group>"; };
+		EEFBDD6324437EE80074CF48 /* RedditPostsLocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditPostsLocalStorage.swift; sourceTree = "<group>"; };
+		EEFBDD6524437EF50074CF48 /* RedditPostsLocalStorageImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditPostsLocalStorageImpl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				EEFBDD5D244369660074CF48 /* ServicesAssembly.swift */,
+				EEFBDD6224437EC70074CF48 /* RedditPostsLocalStorage */,
 				EEFBDD57244366B90074CF48 /* ImageFetchService */,
 				EEFBDCDA244324E60074CF48 /* APIService */,
 			);
@@ -367,6 +372,23 @@
 			path = ViewData;
 			sourceTree = "<group>";
 		};
+		EEFBDD6224437EC70074CF48 /* RedditPostsLocalStorage */ = {
+			isa = PBXGroup;
+			children = (
+				EEFBDD6324437EE80074CF48 /* RedditPostsLocalStorage.swift */,
+				EEFBDD6724437EFB0074CF48 /* Impl */,
+			);
+			path = RedditPostsLocalStorage;
+			sourceTree = "<group>";
+		};
+		EEFBDD6724437EFB0074CF48 /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				EEFBDD6524437EF50074CF48 /* RedditPostsLocalStorageImpl.swift */,
+			);
+			path = Impl;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -476,6 +498,7 @@
 				EEFBDD4F24435A0B0074CF48 /* Collection+Safe.swift in Sources */,
 				EEFBDD2624433D020074CF48 /* RedditTopConfiguratorImpl.swift in Sources */,
 				EEFBDD3024433D8D0074CF48 /* RedditTopPresenterImpl.swift in Sources */,
+				EEFBDD6624437EF50074CF48 /* RedditPostsLocalStorageImpl.swift in Sources */,
 				EEFBDD5624435CB00074CF48 /* RedditTableCell.swift in Sources */,
 				EEFBDCE3244325F60074CF48 /* RedditListingPageDTO.swift in Sources */,
 				EEFBDD5424435C720074CF48 /* LoadingTableCell.swift in Sources */,
@@ -498,6 +521,7 @@
 				EEFBDCE1244325890074CF48 /* RedditPostDTO.swift in Sources */,
 				EEFBDD3A24433DF70074CF48 /* RedditTopViewInput.swift in Sources */,
 				EEFBDD3324433DA70074CF48 /* RedditTopInteractor.swift in Sources */,
+				EEFBDD6424437EE80074CF48 /* RedditPostsLocalStorage.swift in Sources */,
 				EEFBDD2B24433D530074CF48 /* RedditTopRouterImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

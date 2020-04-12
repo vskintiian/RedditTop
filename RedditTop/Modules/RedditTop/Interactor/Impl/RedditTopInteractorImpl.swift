@@ -11,9 +11,11 @@ import Foundation
 final class RedditTopInteractorImpl: RedditTopInteractor {
 
     private let redditApiService: RedditAPIService
+    private let localStorage: RedditPostsLocalStorage
     
-    init(redditApiService: RedditAPIService) {
+    init(redditApiService: RedditAPIService, localStorage: RedditPostsLocalStorage) {
         self.redditApiService = redditApiService
+        self.localStorage = localStorage
     }
     
     private var currentFetchTask: Cancellable? {
@@ -22,6 +24,13 @@ final class RedditTopInteractorImpl: RedditTopInteractor {
     
     private var lastPageId: String = ""
     private var posts: [RedditPostDTO] = []
+    
+    // MARK: - RedditTopInteractor
+    
+    func fetchFromLocalStorage(postsHandler handler: @escaping PostsLocalHandler) {
+        loadDataFromStorage()
+        handler(posts)
+    }
     
     func fetchTopReddits(postsHandler handler: @escaping PostsHandler) {
         guard currentFetchTask == nil else { return }
@@ -50,13 +59,23 @@ final class RedditTopInteractorImpl: RedditTopInteractor {
         lastPageId = ""
         fetchTopReddits(postsHandler: handler)
     }
- 
-    private func handleNewPage(page: RedditListingPageDTO) {
-        lastPageId = page.lastPageId
-        posts += page.posts
-    }
     
     func previewImageUrl(at index: Int) -> URL? {
         return posts[safe: index]?.previewURL
+    }
+    
+    // MARK: - Private
+    
+    private func handleNewPage(page: RedditListingPageDTO) {
+        lastPageId = page.lastPageId
+        posts += page.posts
+        
+        localStorage.posts = posts
+        localStorage.lastPageId = lastPageId
+    }
+    
+    private func loadDataFromStorage() {
+        lastPageId = localStorage.lastPageId ?? ""
+        posts = localStorage.posts
     }
 }
