@@ -44,6 +44,12 @@ final class RedditTopInteractorImpl: RedditTopInteractor {
             self.currentFetchTask = nil
         }
     }
+    
+    func reloadTopReddits(postsHandler handler: @escaping PostsHandler) {
+        posts = []
+        lastPageId = ""
+        fetchTopReddits(postsHandler: handler)
+    }
  
     private func handleNewPage(page: RedditListingPageDTO) {
         lastPageId = page.lastPageId

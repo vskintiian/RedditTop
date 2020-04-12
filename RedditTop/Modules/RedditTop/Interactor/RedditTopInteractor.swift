@@ -12,5 +12,6 @@ protocol RedditTopInteractor {
     typealias PostsHandler = ([RedditPostDTO]) -> Void
     
     func fetchTopReddits(postsHandler handler: @escaping PostsHandler)
+    func reloadTopReddits(postsHandler handler: @escaping PostsHandler)
     func previewImageUrl(at index: Int) -> URL?
 }

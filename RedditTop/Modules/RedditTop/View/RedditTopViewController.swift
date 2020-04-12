@@ -26,6 +26,14 @@ final class RedditTopViewController: UIViewController, RedditTopViewInput {
         return tableView
     }()
     
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(reload), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        
+        return refreshControl
+    }()
+    
     private var models: [RedditViewCellItem] = [] {
         didSet { tableView.reloadData() }
     }
@@ -47,6 +55,11 @@ final class RedditTopViewController: UIViewController, RedditTopViewInput {
         output.viewIsReady()
     }
     
+    @objc private func reload() {
+        refreshControl.beginRefreshing()
+        output.refreshPosts()
+     }
+    
     private func configureLayout() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
@@ -66,6 +79,10 @@ final class RedditTopViewController: UIViewController, RedditTopViewInput {
     }
     
     func modelsUpdated(models: [RedditViewCellItem]) {
+        if refreshControl.isRefreshing {
+            refreshControl.endRefreshing()
+        }
+        
         self.models = models
     }
 }

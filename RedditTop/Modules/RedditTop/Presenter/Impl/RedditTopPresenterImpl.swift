@@ -35,6 +35,10 @@ final class RedditTopPresenterImpl: RedditTopViewOutput {
         fetchAndUpdateData()
     }
     
+    func refreshPosts() {
+        fetchAndUpdateData(shoudlReload: true)
+    }
+    
     func didScrollToBottom() {
         fetchAndUpdateData()
     }
@@ -46,9 +50,21 @@ final class RedditTopPresenterImpl: RedditTopViewOutput {
     
     // MARK: - Private
     
-    private func fetchAndUpdateData() {
-        interactor.fetchTopReddits() { [weak self] posts in
-            self?.cellItems = posts.map(RedditPostViewData.init).map { RedditViewCellItem.post(data: $0) } + [.loadNextPage]
+    private func fetchAndUpdateData(shoudlReload reload: Bool = false) {
+        let updateDataHandler: ([RedditPostDTO]) -> Void = { [weak self] posts in
+            self?.cellItems = RedditViewCellItem.createItems(with: posts)
         }
+        
+        if reload {
+            interactor.reloadTopReddits(postsHandler: updateDataHandler)
+        } else {
+            interactor.fetchTopReddits(postsHandler: updateDataHandler)
+        }
+    }
+}
+
+private extension RedditViewCellItem {
+    static func createItems(with posts: [RedditPostDTO]) -> [RedditViewCellItem] {
+        return posts.map(RedditPostViewData.init).map { RedditViewCellItem.post(data: $0) } + [.loadNextPage]
     }
 }
