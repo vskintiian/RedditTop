@@ -9,5 +9,5 @@
 import Foundation
 
 protocol RedditTopRouter {
-    
+    func open(url: URL)
 }

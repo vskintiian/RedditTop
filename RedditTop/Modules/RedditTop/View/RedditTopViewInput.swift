@@ -9,5 +9,6 @@
 import UIKit
 
 protocol RedditTopViewInput: UIViewController {
-    func modelsUpdated(models: [RedditPostViewData])
+    func setTitle(title: String)
+    func modelsUpdated(models: [RedditViewCellItem])
 }

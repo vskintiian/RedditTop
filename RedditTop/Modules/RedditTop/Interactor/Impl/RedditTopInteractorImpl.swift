@@ -26,6 +26,10 @@ final class RedditTopInteractorImpl: RedditTopInteractor {
     func fetchTopReddits(postsHandler handler: @escaping PostsHandler) {
         guard currentFetchTask == nil else { return }
         
+        if posts.isEmpty == false, lastPageId.isEmpty == true {
+            // TODO: this means that we've reached the bottom. Handle it
+        }
+        
         currentFetchTask = redditApiService.topReddits(after: lastPageId) { [weak self] result in
             guard let self = self else { return }
             
@@ -44,5 +48,9 @@ final class RedditTopInteractorImpl: RedditTopInteractor {
     private func handleNewPage(page: RedditListingPageDTO) {
         lastPageId = page.lastPageId
         posts += page.posts
+    }
+    
+    func previewImageUrl(at index: Int) -> URL? {
+        return posts[safe: index]?.previewURL
     }
 }

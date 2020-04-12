@@ -1,5 +1,5 @@
 //
-//  RedditTopPresenter.swift
+//  RedditViewCellItem.swift
 //  RedditTop
 //
 //  Created by Vladyslav Skintiyan on 12.04.2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol RedditTopPresenter {
-    var router: RedditTopRouter! { get set }
-    var interactor: RedditTopInteractor! { get set }
+enum RedditViewCellItem {
+    case loadNextPage
+    case post(data: RedditPostViewData)
 }

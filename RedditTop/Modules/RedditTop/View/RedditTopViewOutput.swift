@@ -10,4 +10,6 @@ import Foundation
 
 protocol RedditTopViewOutput {
     func viewIsReady()
+    func didScrollToBottom()
+    func didSelect(index: Int)
 }

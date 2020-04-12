@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 final class RedditTopRouterImpl: RedditTopRouter {
     
@@ -14,5 +15,12 @@ final class RedditTopRouterImpl: RedditTopRouter {
     
     init(viewController: UIViewController) {
         self.viewController = viewController
+    }
+
+    // MARK: - RedditTopRouter
+    
+    func open(url: URL) {
+        let safariVC = SFSafariViewController(url: url)
+        viewController.present(safariVC, animated: true, completion: nil)
     }
 }

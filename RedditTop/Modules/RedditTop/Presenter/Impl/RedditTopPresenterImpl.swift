@@ -9,16 +9,16 @@
 import Foundation
 
 final class RedditTopPresenterImpl: RedditTopViewOutput {
-
+    
     weak private(set) var view: RedditTopViewInput!
     
     var interactor: RedditTopInteractor!
     var router: RedditTopRouter!
     
-    private var viewDataModels: [RedditPostViewData] = [] {
+    private var cellItems: [RedditViewCellItem] = [] {
         didSet {
             DispatchQueue.main.async {
-                self.view.modelsUpdated(models: self.viewDataModels)
+                self.view.modelsUpdated(models: self.cellItems)
             }
         }
     }
@@ -27,9 +27,28 @@ final class RedditTopPresenterImpl: RedditTopViewOutput {
         self.view = view
     }
     
+    // MARK: - RedditTopViewOutput
+    
     func viewIsReady() {
-        interactor.fetchTopReddits { [weak self] posts in
-            self?.viewDataModels = posts.map(RedditPostViewData.init)
+        view.setTitle(title: "🔝 Reddit")
+        cellItems = [.loadNextPage]
+        fetchAndUpdateData()
+    }
+    
+    func didScrollToBottom() {
+        fetchAndUpdateData()
+    }
+    
+    func didSelect(index: Int) {
+        guard let url = interactor.previewImageUrl(at: index) else { return }
+        router.open(url: url)
+    }
+    
+    // MARK: - Private
+    
+    private func fetchAndUpdateData() {
+        interactor.fetchTopReddits() { [weak self] posts in
+            self?.cellItems = posts.map(RedditPostViewData.init).map { RedditViewCellItem.post(data: $0) } + [.loadNextPage]
         }
     }
 }

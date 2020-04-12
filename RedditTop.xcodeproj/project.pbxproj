@@ -36,6 +36,12 @@
 		EEFBDD4D244359F90074CF48 /* UITableViewCell+ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFBDD4C244359F90074CF48 /* UITableViewCell+ReusableView.swift */; };
 		EEFBDD4F24435A0B0074CF48 /* Collection+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFBDD4E24435A0B0074CF48 /* Collection+Safe.swift */; };
 		EEFBDD5124435B6B0074CF48 /* URLSessionDataTask+Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFBDD5024435B6B0074CF48 /* URLSessionDataTask+Cancellable.swift */; };
+		EEFBDD5424435C720074CF48 /* LoadingTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFBDD5324435C720074CF48 /* LoadingTableCell.swift */; };
+		EEFBDD5624435CB00074CF48 /* RedditTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFBDD5524435CB00074CF48 /* RedditTableCell.swift */; };
+		EEFBDD59244366CA0074CF48 /* ImageFetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFBDD58244366CA0074CF48 /* ImageFetchService.swift */; };
+		EEFBDD5B244366D50074CF48 /* ImageFetchServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFBDD5A244366D50074CF48 /* ImageFetchServiceImpl.swift */; };
+		EEFBDD5E244369660074CF48 /* ServicesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFBDD5D244369660074CF48 /* ServicesAssembly.swift */; };
+		EEFBDD6124436D290074CF48 /* RedditViewCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFBDD6024436D290074CF48 /* RedditViewCellItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +88,12 @@
 		EEFBDD4C244359F90074CF48 /* UITableViewCell+ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+ReusableView.swift"; sourceTree = "<group>"; };
 		EEFBDD4E24435A0B0074CF48 /* Collection+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Safe.swift"; sourceTree = "<group>"; };
 		EEFBDD5024435B6B0074CF48 /* URLSessionDataTask+Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSessionDataTask+Cancellable.swift"; sourceTree = "<group>"; };
+		EEFBDD5324435C720074CF48 /* LoadingTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableCell.swift; sourceTree = "<group>"; };
+		EEFBDD5524435CB00074CF48 /* RedditTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditTableCell.swift; sourceTree = "<group>"; };
+		EEFBDD58244366CA0074CF48 /* ImageFetchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetchService.swift; sourceTree = "<group>"; };
+		EEFBDD5A244366D50074CF48 /* ImageFetchServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetchServiceImpl.swift; sourceTree = "<group>"; };
+		EEFBDD5D244369660074CF48 /* ServicesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesAssembly.swift; sourceTree = "<group>"; };
+		EEFBDD6024436D290074CF48 /* RedditViewCellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditViewCellItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +159,8 @@
 		EEFBDCD2244323FD0074CF48 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				EEFBDD5D244369660074CF48 /* ServicesAssembly.swift */,
+				EEFBDD57244366B90074CF48 /* ImageFetchService */,
 				EEFBDCDA244324E60074CF48 /* APIService */,
 			);
 			path = Services;
@@ -207,10 +221,11 @@
 		EEFBDD1D24433CA90074CF48 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EEFBDD5F24436BB90074CF48 /* ViewData */,
+				EEFBDD5224435C510074CF48 /* Cells */,
 				EEFBDD3724433DD70074CF48 /* RedditTopViewController.swift */,
 				EEFBDD3924433DF70074CF48 /* RedditTopViewInput.swift */,
 				EEFBDD3B24433DFF0074CF48 /* RedditTopViewOutput.swift */,
-				EEFBDD472443585D0074CF48 /* RedditPostViewData.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -317,6 +332,41 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		EEFBDD5224435C510074CF48 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EEFBDD5324435C720074CF48 /* LoadingTableCell.swift */,
+				EEFBDD5524435CB00074CF48 /* RedditTableCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		EEFBDD57244366B90074CF48 /* ImageFetchService */ = {
+			isa = PBXGroup;
+			children = (
+				EEFBDD58244366CA0074CF48 /* ImageFetchService.swift */,
+				EEFBDD5C244366DB0074CF48 /* Impl */,
+			);
+			path = ImageFetchService;
+			sourceTree = "<group>";
+		};
+		EEFBDD5C244366DB0074CF48 /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				EEFBDD5A244366D50074CF48 /* ImageFetchServiceImpl.swift */,
+			);
+			path = Impl;
+			sourceTree = "<group>";
+		};
+		EEFBDD5F24436BB90074CF48 /* ViewData */ = {
+			isa = PBXGroup;
+			children = (
+				EEFBDD472443585D0074CF48 /* RedditPostViewData.swift */,
+				EEFBDD6024436D290074CF48 /* RedditViewCellItem.swift */,
+			);
+			path = ViewData;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -421,16 +471,20 @@
 				EEFBDD3F244344280074CF48 /* BaseSceneDelegate.swift in Sources */,
 				EEFBDCD92443248D0074CF48 /* RequestsExecutor.swift in Sources */,
 				EEFBDD5124435B6B0074CF48 /* URLSessionDataTask+Cancellable.swift in Sources */,
+				EEFBDD5E244369660074CF48 /* ServicesAssembly.swift in Sources */,
 				EEFBDD4D244359F90074CF48 /* UITableViewCell+ReusableView.swift in Sources */,
 				EEFBDD4F24435A0B0074CF48 /* Collection+Safe.swift in Sources */,
 				EEFBDD2624433D020074CF48 /* RedditTopConfiguratorImpl.swift in Sources */,
 				EEFBDD3024433D8D0074CF48 /* RedditTopPresenterImpl.swift in Sources */,
+				EEFBDD5624435CB00074CF48 /* RedditTableCell.swift in Sources */,
 				EEFBDCE3244325F60074CF48 /* RedditListingPageDTO.swift in Sources */,
+				EEFBDD5424435C720074CF48 /* LoadingTableCell.swift in Sources */,
 				EEFBDD482443585E0074CF48 /* RedditPostViewData.swift in Sources */,
 				EEFBDCD5244324680074CF48 /* RedditEndpoint.swift in Sources */,
 				EEFBDD3C24433DFF0074CF48 /* RedditTopViewOutput.swift in Sources */,
 				EEFBDCB1244322E90074CF48 /* AppDelegate.swift in Sources */,
 				EEFBDD4B244358A20074CF48 /* Date+Extensions.swift in Sources */,
+				EEFBDD5B244366D50074CF48 /* ImageFetchServiceImpl.swift in Sources */,
 				EEFBDD2E24433D710074CF48 /* RedditTopPresenter.swift in Sources */,
 				EEFBDCB3244322E90074CF48 /* SceneDelegate.swift in Sources */,
 				EEFBDD41244344770074CF48 /* ApplicationInitService.swift in Sources */,
@@ -438,7 +492,9 @@
 				EEFBDD2424433CF10074CF48 /* RedditTopConfigurator.swift in Sources */,
 				EEFBDD2924433D3B0074CF48 /* RedditTopRouter.swift in Sources */,
 				EEFBDCD7244324790074CF48 /* RedditAPIService.swift in Sources */,
+				EEFBDD6124436D290074CF48 /* RedditViewCellItem.swift in Sources */,
 				EEFBDCDE2443251C0074CF48 /* RedditAPIServiceImpl.swift in Sources */,
+				EEFBDD59244366CA0074CF48 /* ImageFetchService.swift in Sources */,
 				EEFBDCE1244325890074CF48 /* RedditPostDTO.swift in Sources */,
 				EEFBDD3A24433DF70074CF48 /* RedditTopViewInput.swift in Sources */,
 				EEFBDD3324433DA70074CF48 /* RedditTopInteractor.swift in Sources */,
